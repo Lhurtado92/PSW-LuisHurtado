@@ -1,16 +1,5 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "12345678";
-
-// Crear conexión
-$conn = mysqli_connect($servername, $username, $password);
-
-// Check conn
-if (!$conn){
-    die("Falló la conexión: " . mysqli_connect_error());
-}
-
+include('../config/db_connection_createDB.php');
 //Crear BD
 $sql = "CREATE DATABASE bdunad05 CHARACTER SET utf8 COLLATE utf8_spanish_ci";
 
