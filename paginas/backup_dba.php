@@ -1,10 +1,4 @@
 <?php 
-/**
- * This file contains the Backup_Database class wich performs
- * a partial or complete backup of any given MySQL database
- * @author Daniel López Azaña <daniloaz@gmail.com>
- * @version 1.0
- */
 
 /**
  * Define database parameters here
@@ -235,30 +229,7 @@ class Backup_Database {
                     }
                 }
 
-                /**
-                 * CREATE TRIGGER
-                 */
 
-                // Check if there are some TRIGGERS associated to the table
-                /*$query = "SHOW TRIGGERS LIKE '" . $table . "%'";
-                $result = mysqli_query ($this->conn, $query);
-                if ($result) {
-                    $triggers = array();
-                    while ($trigger = mysqli_fetch_row ($result)) {
-                        $triggers[] = $trigger[0];
-                    }
-                    
-                    // Iterate through triggers of the table
-                    foreach ( $triggers as $trigger ) {
-                        $query= 'SHOW CREATE TRIGGER `' . $trigger . '`';
-                        $result = mysqli_fetch_array (mysqli_query ($this->conn, $query));
-                        $sql.= "\nDROP TRIGGER IF EXISTS `" . $trigger . "`;\n";
-                        $sql.= "DELIMITER $$\n" . $result[2] . "$$\n\nDELIMITER ;\n";
-                    }
-                    $sql.= "\n";
-                    $this->saveFile($sql);
-                    $sql = '';
-                }*/
  
                 $sql.="\n\n";
 
@@ -310,12 +281,6 @@ class Backup_Database {
         return true;
     }
 
-    /*
-     * Gzip backup file
-     *
-     * @param integer $level GZIP compression level (default: 9)
-     * @return string New filename (with .gz appended) if success, or false if operation fails
-     */
     protected function gzipBackupFile($level = 9) {
         if (!$this->gzipBackupFile) {
             return true;
@@ -468,17 +433,6 @@ $backupDatabase = new Backup_Database(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME, CH
 
 // Option-1: Backup tables already defined above
 $result = $backupDatabase->backupTables(TABLES) ? 'OK' : 'KO';
-
-// Option-2: Backup changed tables only - uncomment block below
-/*
-$since = '1 day';
-$changed = $backupDatabase->getChangedTables($since);
-if(!$changed){
-  $backupDatabase->obfPrint('No tables modified since last ' . $since . '! Quitting..', 1);
-  die();
-}
-$result = $backupDatabase->backupTables($changed) ? 'OK' : 'KO';
-*/
 
 
 $backupDatabase->obfPrint('Backup result: ' . $result, 1);
