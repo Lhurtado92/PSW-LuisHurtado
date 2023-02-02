@@ -35,9 +35,15 @@ function Footer()
 }
 }
 
+<<<<<<< HEAD
 require('../config/bdreporte.php');
 $consulta = "SELECT * FROM tabla05";
 $resultado = $mysqli->query($consulta);
+=======
+//require ('../config/db_connection.php');
+//$consulta = "SELECT * FROM tabla05";
+//$resultado = $mysqli->query($consulta);
+>>>>>>> 9abe224ff156840c6076ecb22aaf69ab67233eab
 
 $pdf = new PDF();
 $pdf->AliasNbPages();
