@@ -35,9 +35,9 @@ function Footer()
 }
 }
 
-require ('../config/db_connection.php');
-$consulta = "SELECT * FROM tabla05";
-$resultado = $mysqli->query($consulta);
+//require ('../config/db_connection.php');
+//$consulta = "SELECT * FROM tabla05";
+//$resultado = $mysqli->query($consulta);
 
 $pdf = new PDF();
 $pdf->AliasNbPages();
